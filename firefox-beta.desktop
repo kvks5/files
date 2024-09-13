@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=GNOME;GTK;Network;WebBrowser;
+Comment[en_US]=Browse the World Wide Web
+Comment=Browse the World Wide Web
+Exec=/home/kunal/.local/bin/firefox/firefox
+GenericName[en_US]=Web Browser
+GenericName=Web Browser
+Icon=internet-web-browser
+Keywords=Internet;WWW;Browser;Web;Explorer
+MimeType=video/webm;text/html;image/png;image/jpeg;image/gif;application/xml;application/xml;application/xhtml+xml;application/x-xpinstall;application/rss+xml;application/rdf+xml;
+Name[en_US]=Firefox Beta Web Browser
+Name=Firefox Beta Web Browser
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-MultipleArgs=false

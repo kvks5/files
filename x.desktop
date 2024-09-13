@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Xrdb-Merge
+Exec=sh ~/.local/bin/x.sh
+Icon=chromium
+Comment=Background application to intercept and action libinput gestures from touchpad.
+X-Gnome-Autostart-enabled=true
