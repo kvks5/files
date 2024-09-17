@@ -25,7 +25,7 @@ See the above repository for updates as well as full license text. */
 #navigator-toolbox{
   position: fixed !important;
   display: block;
-  background-color: var(--lwt-accent-color,black) !important;
+  background-color: var(--lwt-accent-color,silver) !important;
   transition: transform 82ms linear, opacity 82ms linear !important;
   transition-delay: var(--uc-autohide-toolbox-delay) !important;
   transform-origin: top;
