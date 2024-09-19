@@ -1,0 +1,7 @@
+# open anything else externally
+application/pdf; zathura %s &
+#text/html; firefox %s; nametemplate=%s.html; copiousoutput; &
+text/html; firefox %s; test=test -n "$DISPLAY"; needsterminal &
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s &
+application/msword; libreoffice %s &
+
