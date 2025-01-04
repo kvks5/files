@@ -1,0 +1,1 @@
+qutebrowser --enable-features=VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization --enable-zero-copy --use-gl=desktop --ignore-gpu-blocklist --enable-oop-rasterization --enable-raw-draw --enable-gpu-rasterization --enable-accelerated-video-decode --enable-gpu-compositing --enable-accelerated-mjpeg-decode --enable-gpu-compositing
