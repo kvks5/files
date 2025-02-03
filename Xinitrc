@@ -22,10 +22,12 @@ hsetroot -fill Pictures/Wall3.jpg &
 copyq &
 xautolock -time 5 -locker "systemctl suspend" -detectsleep &
 xrandr --output eDP-1 --gamma 1.0:0.88:0.76 &
+dunst &
+/home/kunal/.local/bin/lb &
 # status bar
 
 while true; do
-	xsetroot -name "|| : $(acpi | awk '{print $4}i') $(acpi | awk '{print $5}') || $(date '+%a %H:%M %Y-%m-%d') ||"
+	xsetroot -name "|| Bat: $(acpi | awk '{print $4}i') $(acpi | awk '{print $5}') || $(date '+%a %H:%M %Y-%m-%d') ||"
 	sleep 5s
 done &
 
