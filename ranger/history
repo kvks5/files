@@ -1,0 +1,16 @@
+rename Manasa_B_M-Davanagere.pdf
+rename .neomutt
+rename Linkedin.pptx
+
+cd .config/
+mkdir mako
+rename Kolkata_Sourish_Burman.pdf
+rename wall.jpg
+cd .config/niri/
+rename Kolkata_Saikat_Sarkar.pdf
+delete
+execute_command unzip
+rename dunstrc
+mkdir niri
+mkdir waybar
+rename ranger.desktop.bak
