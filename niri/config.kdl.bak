@@ -6,17 +6,6 @@
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
-
-cursor {
-    xcursor-theme "Breeze_Light"
-    xcursor-size 32
-    // Optional: hide the cursor when typing or after inactivity
-    hide-when-typing
-    // hide-after-inactive-ms 10000
-}
-
-
-
 input {
     keyboard {
         xkb {
@@ -33,7 +22,7 @@ input {
         }
 
         // Enable numlock on startup, omitting this setting disables it.
-      //  numlock
+    //    numlock
     }
 
     // Next sections include libinput settings.
@@ -42,8 +31,8 @@ input {
     touchpad {
         // off
         tap
-        // dwt
-        // dwtp
+        dwt
+        dwtp
         // drag false
         // drag-lock
         natural-scroll
@@ -122,7 +111,7 @@ input {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 1
+    gaps 0
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -162,12 +151,12 @@ layout {
     // client-side decorations.
     //
     // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
+   // `draw-border-with-background`.
 
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        off
+        // off
 
         // How many logical pixels the ring extends out from the windows.
         width 1
@@ -281,7 +270,6 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "/home/kunal/.config/niri/autostart.sh"
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -314,7 +302,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 2.0
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -337,10 +325,8 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id="copyq"
+    match app-id=r"copyq"
     match title="copyq"
-    match app-id="com.github.hluk.copyq"
-    match title="com.github.hluk.copyq" 
     open-floating true
 }
 
@@ -358,8 +344,8 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    geometry-corner-radius 8
     clip-to-geometry true
 }
 
@@ -383,13 +369,12 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Super+Shift+B { spawn "~/.config/niri/toggle-waybar.sh"; }
-    Super+B { spawn "~/.config/niri/battery-notify.sh"; }
-    Super+E { spawn "kitty" "-e" "yazi"; }
-    Super+P { spawn "wofi" "--show" "drun,run" "--allow-images" "--lines" "12"; }
-    Super+V { spawn "/home/kunal/.local/bin/wl.sh";}
-    Super+Shift+S { spawn "/home/kunal/.config/niri/screenshot.sh" ; }
-    Super+X { spawn "copyq" "toggle" ; }
+    Mod+E { spawn "kitty" "-e" "yazi" ; }
+    Mod+V { spawn "copyq" "toggle" ; }
+    Mod+B { spawn "/home/kunal/.config/niri/batntime.sh" ; }
+    Mod+Shift+B { spawn "/home/kunal/.config/niri/wbl.sh" ; }
+    Mod+P { spawn "wofi" "--show" "drun,run" "--allow-images" ; }
+
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
@@ -399,16 +384,23 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
     // "-l 1.0" limits the volume to 100%.
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-    XF86AudioRaiseVolume {  spawn "amixer -q set Master 5%+" ; }
-    XF86AudioLowerVolume  {  spawn "amixer -q set Master 5%-" ; }
-    XF86AudioMute { spawn "amixer -q set Master toggle" ; }
+    // Example media keys mapping using playerctl.
+    // This will work with any MPRIS-enabled media player.
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -600,8 +592,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+//    Mod+V       { toggle-window-floating; }
+//    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
