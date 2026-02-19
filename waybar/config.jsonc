@@ -1,0 +1,42 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 11,
+  "spacing": 4,
+
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["niri/window"],
+  "modules-right": ["battery", "clock#time"],
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "focused": "",
+      "urgent": ""
+    }
+  },
+
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 40
+  },
+
+  "clock#date": {
+    "format": "  %A, %d %B"
+  },
+
+  "clock#time": {
+    "format": "  {:%A, %d %B  %H:%M}"
+  },
+
+  "battery": {
+    "format": "{icon}  {capacity}% ({time})",
+    "format-icons": ["", "", "", "", ""],
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  }
+}
+

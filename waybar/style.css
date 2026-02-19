@@ -1,0 +1,32 @@
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 11px;
+    font-family: "FiraCode Nerd Font", "Font Awesome 6 Free", monospace;
+    font-size: 10px;
+}
+
+window#waybar {
+    background: rgba(15, 17, 21, 0.95);
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    padding: 0 3px;
+    color: #6c7086;
+}
+
+#workspaces button.focused {
+    color: #cdd6f4;
+}
+
+#window {
+    padding: 0 6px;
+    color: #a6adc8;
+}
+
+#clock,
+#battery {
+    padding: 0 6px;
+}
+

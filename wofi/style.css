@@ -1,0 +1,106 @@
+/* =========================
+   GLOBAL
+   ========================= */
+* {
+    font-family: "SF Pro Display", "New York", sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* =========================
+   WINDOW
+   ========================= */
+window {
+    margin: 0px;
+    padding: 2px;
+    background-color: #0f1115;
+    border: 2px solid #1e222a;
+    min-height: 1px;
+    border-radius: 8px;
+}
+
+/* =========================
+   INPUT BAR
+   ========================= */
+#input {
+    margin: 5px;
+    padding: 2px 4px;
+    border-radius: 8px;
+    border: none;
+    background-color: #1a1d24;
+    color: #e5e9f0;
+}
+
+#input:focus {
+    box-shadow: none;
+}
+
+/* =========================
+   INNER BOX
+   ========================= */
+#inner-box {
+    margin: 5px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+/* =========================
+   OUTER BOX
+   ========================= */
+#outer-box {
+    margin: 5px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+/* =========================
+   SCROLL
+   ========================= */
+#scroll {
+    margin: 0px;
+}
+
+/* =========================
+   ENTRIES
+   ========================= */
+#entry {
+    padding: 2px 4px;
+    margin: 4px 0;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #cdd6f4;
+}
+
+#entry:selected {
+    background-color: #1f2430;
+    color: #ffffff;
+}
+
+/* =========================
+   ICONS
+   ========================= */
+#entry image {
+    margin-right: 10px;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+#text {
+    color: inherit;
+}
+
+/* =========================
+   NO RESULTS
+   ========================= */
+#text:selected {
+    color: #ffffff;
+}
+
+/* =========================
+   PLACEHOLDER TEXT
+   ========================= */
+#input::placeholder {
+    color: #6c7086;
+}
+
